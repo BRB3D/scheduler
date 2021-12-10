@@ -1,6 +1,6 @@
 import React from 'react';
 
-//--------------------------Component Import
+//--------------------------Component Import----------------/
 import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
@@ -11,19 +11,10 @@ import 'components/Appointment/styles.scss';
 //-----------------------Index from Appointment------/
 export default function Appointment(props) {
   const { time, interview } = props;
-  const text = (time) => {
-    if (time) {
-      return `${time}`
-    }
-    return 'No Appointments';
-  }
-
   return (
     <article className="appointment">
-      <>{text(time)}</>
-      <Header />
+      <Header time={time} />
       {interview ? <Show interviewer={interview.interviewer} student={interview.student} /> : <Empty />}
     </article>
-
   )
 }
