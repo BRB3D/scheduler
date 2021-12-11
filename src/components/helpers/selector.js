@@ -25,4 +25,14 @@ const getAppointmentsForDay = function(state, day) {
   return appointmentsForTheDay;
 }
 
-export default getAppointmentsForDay;
+
+
+const getInterview = function(state, interview) {
+  if (!interview) {
+    return null;
+  }
+
+
+}
+
+export { getAppointmentsForDay }
