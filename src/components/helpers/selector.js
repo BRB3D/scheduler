@@ -28,11 +28,14 @@ const getAppointmentsForDay = function(state, day) {
 
 
 const getInterview = function(state, interview) {
+  const { interviewers } = state;
   if (!interview) {
     return null;
   }
+  const result = { ...interview, interviewer: interviewers[interview.interviewer] }
 
+  return result;
 
 }
 
-export { getAppointmentsForDay }
+export { getAppointmentsForDay, getInterview }
