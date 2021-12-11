@@ -8,7 +8,7 @@ import Appointment from "./Appointment";
 
 //------------------------------------MOCK DATA--------------------------------------//
 
-const appointments = [
+/* const appointments = [
   {
     id: 1,
     time: "12pm",
@@ -45,7 +45,7 @@ const appointments = [
     id: 5,
     time: "4pm",
   }
-];
+]; */
 
 //--------------------------------------------------------------------------------------//
 
@@ -61,6 +61,8 @@ export default function Application(props) {
   useEffect(() => {
     axios.get('/api/days').then(resp => setDays([...resp.data]));
   }, [])
+
+  const dailyAppointments = [];
 
   return (
     <main className="layout">
@@ -85,7 +87,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments.map((appointment) =>
+        {dailyAppointments.map((appointment) =>
           <Appointment key={appointment.id} {...appointment} />
         )}
         <Appointment key="last" time="5pm" />
