@@ -38,4 +38,31 @@ const getInterview = function(state, interview) {
 
 }
 
-export { getAppointmentsForDay, getInterview }
+const getInterviewersForDay = function(state, day) {
+  const { days, interviewers } = state;
+  const selectedDay = (function() {
+    let interviewersForDayArray = [];
+    for (let dayObj of days) {
+      if (dayObj.name === day) {
+        interviewersForDayArray = [...dayObj.interviewers];
+      }
+    }
+    return interviewersForDayArray;
+  }());
+
+  const interviewesForTheDay = (function() {
+    if (selectedDay.length === 0) { return [] };
+    let result = []
+    for (let interview of selectedDay) {
+      if (interviewers[interview]) {
+        result.push(interviewers[interview]);
+      }
+    }
+    return result;
+  }());
+
+  return interviewesForTheDay;
+}
+
+
+export { getAppointmentsForDay, getInterview, getInterviewersForDay }

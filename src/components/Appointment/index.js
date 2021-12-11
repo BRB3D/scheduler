@@ -12,7 +12,7 @@ import 'components/Appointment/styles.scss';
 
 //-----------------------Index from Appointment------/
 export default function Appointment(props) {
-  const { time, interview } = props;
+  const { time, interview, interviewers } = props;
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
@@ -23,7 +23,7 @@ export default function Appointment(props) {
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (<Show student={interview.student} interviewer={interview.interviewer} />)}
-      {mode === CREATE && (<Form onCancel={() => back()} interviewers={[]} />)}
+      {mode === CREATE && (<Form onCancel={() => back()} interviewers={interviewers} />)}
     </article>
   )
 }

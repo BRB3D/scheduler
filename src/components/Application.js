@@ -4,7 +4,7 @@ import axios from 'axios';
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "./helpers/selector";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "./helpers/selector";
 
 
 //------------------------------------MOCK DATA--------------------------------------//
@@ -72,6 +72,9 @@ export default function Application(props) {
   }, [])
 
   const appointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
+
+
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -80,12 +83,11 @@ export default function Application(props) {
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interview={appointment.interview}
+        interview={interview}
+        interviewers={interviewers}
       />
     );
   });
-
-
 
   return (
     <main className="layout">
@@ -110,9 +112,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments.map((appointment) =>
-          <Appointment key={appointment.id} {...appointment} />
-        )}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
