@@ -34,6 +34,31 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview: appointments[id].interview })
       .then(() => setState(prev => ({ ...prev, appointments: appointments })))
+      .then(() => setState(prev => {
+        const newState = { ...prev }
+        const appointmentsDay = (function() {
+
+          for (let dayInDays of newState.days) {
+            if (dayInDays.name === newState.day) {
+              return { appoint: dayInDays.appointments, id: dayInDays.id }
+            }
+          };
+        }());
+        const spots = (function() {
+
+          return appointmentsDay.appoint.filter(dayNumber => !newState.appointments[dayNumber].interview)
+        }())
+        const spotNumber = spots.length;
+        const totalSpots = {
+          ...newState.days[appointmentsDay.id - 1], spots: spotNumber
+        }
+        console.log(totalSpots);
+
+        newState.days[appointmentsDay.id - 1] = totalSpots
+
+        console.log('days Copy', newState)
+        return newState
+      }))
   }
 
   const setDay = day => setState({ ...state, day });
@@ -48,12 +73,39 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     }
-    console.log(appointments)
+
+
+
 
 
 
     return axios.delete(`/api/appointments/${id}`, { interview: null })
-      .then(() => setState(prev => ({ ...prev, appointments: appointments })));
+      .then(() => setState(prev => ({ ...prev, appointments: appointments })))
+      .then(() => setState(prev => {
+        const newState = { ...prev }
+        const appointmentsDay = (function() {
+
+          for (let dayInDays of newState.days) {
+            if (dayInDays.name === newState.day) {
+              return { appoint: dayInDays.appointments, id: dayInDays.id }
+            }
+          };
+        }());
+        const spots = (function() {
+
+          return appointmentsDay.appoint.filter(dayNumber => !newState.appointments[dayNumber].interview)
+        }())
+        const spotNumber = spots.length;
+        const totalSpots = {
+          ...newState.days[appointmentsDay.id - 1], spots: spotNumber
+        }
+        console.log(totalSpots);
+
+        newState.days[appointmentsDay.id - 1] = totalSpots
+
+        console.log('days Copy', newState)
+        return newState
+      }))
   }
 
   return { state, setDay, bookInterview, cancelInterview };
