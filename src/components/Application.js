@@ -57,7 +57,7 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
-
+  //--------------------- Sets state when saving a function and updates database with ana axios request--------//
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -69,17 +69,30 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    setState(prev => ({ ...prev, appointments: appointments }));
-
 
     return axios.put(`/api/appointments/${id}`, { interview: appointments[id].interview })
-
-
-
+      .then(() => setState(prev => ({ ...prev, appointments: appointments })))
   }
 
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+    console.log(appointments)
+
+
+
+    return axios.delete(`/api/appointments/${id}`, { interview: null })
+      .then(() => setState(prev => ({ ...prev, appointments: appointments })));
+  }
   const setDay = day => setState({ ...state, day });
-  /*  const setDays = days => setState(prev => ({ ...prev, days })); */
+
 
   useEffect(() => {
 
@@ -107,6 +120,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
