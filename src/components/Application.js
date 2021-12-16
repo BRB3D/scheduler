@@ -11,60 +11,13 @@ import useApplicationData from "hooks/useApplicationData";
 //--------------------------------------------------------------------------------------//
 
 export default function Application() {
+
   const {
     state,
     setDay,
     bookInterview,
     cancelInterview
   } = useApplicationData();
-  //--------------------- Sets state when saving a function and updates database with ana axios request--------//
-  /*   function bookInterview(id, interview) {
-      const appointment = {
-        ...state.appointments[id],
-        interview: { ...interview }
-      };
-  
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
-      console.log(interview)
-  
-      return axios.put(`/api/appointments/${id}`, { interview: appointments[id].interview })
-        .then(() => setState(prev => ({ ...prev, appointments: appointments })))
-    } */
-
-  /*  function cancelInterview(id) {
-     const appointment = {
-       ...state.appointments[id],
-       interview: null
-     }
- 
-     const appointments = {
-       ...state.appointments,
-       [id]: appointment
-     }
-     console.log(appointments)
- 
- 
- 
-     return axios.delete(`/api/appointments/${id}`, { interview: null })
-       .then(() => setState(prev => ({ ...prev, appointments: appointments })));
-   } */
-  /* const setDay = day => setState({ ...state, day }); */
-
-
-  /*   useEffect(() => {
-  
-      Promise.all([
-        axios.get('/api/days'), //days
-        axios.get('/api/appointments'), //appointments
-        axios.get('/api/interviewers') //interviewers
-      ]).then((all) => {
-        setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-      });
-    }, []) */
-
 
   const interviewers = getInterviewersForDay(state, state.day);
 

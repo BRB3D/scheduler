@@ -22,7 +22,7 @@ export default function useApplicationData() {
 
   const updateSpots = function(appointments) {
     const currentDay = state.day;
-    const arrayOfAppointments = (function() {
+    const dayObj = (function() {
       for (let arr of state.days) {
         if (currentDay === arr.name) {
           return arr;
@@ -30,9 +30,9 @@ export default function useApplicationData() {
       }
     }())
 
-    const dayId = arrayOfAppointments.id - 1;
-    const filteredArray = arrayOfAppointments.appointments.filter(id => !appointments[id].interview);
-    const spots = filteredArray.length;
+    const dayId = dayObj.id - 1;
+    const nullAppointments = dayObj.appointments.filter(id => !appointments[id].interview);
+    const spots = nullAppointments.length;
 
     const updatedDay = { ...state.days[dayId], spots: spots };
 

@@ -2,7 +2,9 @@ import React from 'react';
 
 
 export default function Header(props) {
+
   const { time } = props;
+
   const text = (time) => {
     if (time) {
       return `${time}`

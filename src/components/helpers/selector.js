@@ -1,7 +1,9 @@
 
 
 const getAppointmentsForDay = function(state, day) {
+
   const { days, appointments } = state;
+
   const selectedDay = (function() {
     let appointmentForDayArray = [];
     for (let dayObj of days) {
@@ -28,6 +30,7 @@ const getAppointmentsForDay = function(state, day) {
 
 
 const getInterview = function(state, interview) {
+
   const { interviewers } = state;
   if (!interview) {
     return null;
@@ -40,6 +43,7 @@ const getInterview = function(state, interview) {
 
 const getInterviewersForDay = function(state, day) {
   const { days, interviewers } = state;
+
   const selectedDay = (function() {
     let interviewersForDayArray = [];
     for (let dayObj of days) {

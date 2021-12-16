@@ -13,7 +13,7 @@ import Error from './Error'
 import 'components/Appointment/styles.scss';
 
 //-----------------------Index from Appointment------/
-export default function Appointment(props) {
+function Appointment(props) {
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
@@ -48,15 +48,30 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (<Show student={interview.student} interviewer={interview.interviewer} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)} />)}
+      {mode === SHOW && (
+        <Show
+          student={interview.student}
+          interviewer={interview.interviewer}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
+        />)}
       {mode === CREATE && (<Form onCancel={() => back()} interviewers={interviewers} onSave={save} />)}
       {mode === SAVE && (<Status message='Saving' />)}
       {mode === DELETE && (<Status message='Deleting' />)}
       {mode === CONFIRM && (<Confirm onCancel={() => transition(SHOW)} onConfirm={del} />)}
-      {mode === EDIT && (<Form onCancel={() => transition(SHOW)} interviewer={interview.interviewer.id} student={interview.student} interviewers={interviewers} onSave={save} />)}
+      {mode === EDIT && (
+        <Form
+          onCancel={() => transition(SHOW)}
+          interviewer={interview.interviewer.id}
+          student={interview.student}
+          interviewers={interviewers}
+          onSave={save}
+        />)}
       {mode === ERROR_SAVE && <Error onClose={() => transition(EMPTY)} />}
       {mode === ERROR_DELETE && <Error onClose={() => transition(SHOW)} />}
     </article>
   )
 }
 
+
+export default Appointment;
