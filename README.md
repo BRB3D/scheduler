@@ -8,11 +8,17 @@ This scheduler connects to a database and interacts with it via Axios with PUT, 
 The focus was on creating components while testign their functionality, and therefore this react app has been built with a modular mindset.
 The app has the capability of rendering only the information that has changed or that it is necesary thanks to the state usage provided by react. It also will show empty spots and a list of interviewers to choose from. Trying to save without a name or interviewer is handled and will display a message depending on if you tried to save without a name or without an interviewer selected.
 
-!["Creating, Deleting, Edditing"](#)
+!["Creating"](#)
 
-!["Spots and No spots"](#)
+!["Deleting"](#)
 
-!["Error Handling"](#)
+!["Edditing"](#)
+
+!["No Student Name"](#)
+!["No Interviewer"](#)
+
+!["Error Handling1"](#)
+!["Error Handling2"](#)
 
 ## Getting Started
 
