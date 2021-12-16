@@ -8,17 +8,17 @@ This scheduler connects to a database and interacts with it via Axios with PUT, 
 The focus was on creating components while testign their functionality, and therefore this react app has been built with a modular mindset.
 The app has the capability of rendering only the information that has changed or that it is necesary thanks to the state usage provided by react. It also will show empty spots and a list of interviewers to choose from. Trying to save without a name or interviewer is handled and will display a message depending on if you tried to save without a name or without an interviewer selected.
 
-!["Creating"](#)
+!["Creating"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/Create.gif?raw=true)
 
-!["Deleting"](#)
+!["Deleting"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/Full.gif?raw=true)
 
-!["Edditing"](#)
+!["Edditing"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/Edit.gif?raw=true)
 
-!["No Student Name"](#)
-!["No Interviewer"](#)
+!["No Student Name"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/NoStudent.gif?raw=true)
+!["No Interviewer"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/NoInterviewer.gif?raw=true)
 
-!["Error Handling1"](#)
-!["Error Handling2"](#)
+!["Error Handling1"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/ErrorHandling1.gif?raw=true)
+!["Error Handling2"](https://github.com/BRB3D/scheduler/blob/master/public/Gifs/ErrorHandling2.gif?raw=true)
 
 ## Getting Started
 
